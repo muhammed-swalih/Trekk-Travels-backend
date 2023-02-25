@@ -1,7 +1,8 @@
 import express from 'express'
 import mongoose, { mongo } from 'mongoose';
 import dotenv from 'dotenv'
-import destRoute from './routes/dest.js'
+import destRoute from './routes/packages.js'
+import cors from 'cors'
 
 const app = express();
 dotenv.config();
@@ -9,7 +10,9 @@ dotenv.config();
 const PORT = process.env.PORT || 3001;
 app.use(express.json())
 
-app.use('/dest' , destRoute)
+app.use(cors())
+
+app.use('/packages' , destRoute)
 
 mongoose.set('strictQuery', true);
 
