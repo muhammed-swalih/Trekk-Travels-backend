@@ -5,6 +5,8 @@ import familyModel from './models/familyModel.js';
 import holidayModel from './models/holidayModel.js';
 import honeyMoonModel from './models/honeyMoonModel.js';
 import adsModel from './models/adsModel.js';
+import trivandrumModel from './models/Resort-Models/trivandrumModel.js';
+
 
 const Storage = multer.diskStorage({
     destination: 'uploads',
@@ -23,13 +25,20 @@ export const postHoneyMoon = ((req, res) => {
         } else {
             const image = sharp(req.file.path)
                 .resize(800)
-                .jpeg({ quality: 80 });
+                .jpeg({ quality: 20 });
 
             const compressedImageBuffer = await image.toBuffer();
             const honeyMoon = new honeyMoonModel({
                 place: req.body.place,
                 price: req.body.price,
                 days: req.body.days,
+                description : req.body.description,
+                highlight1 : req.body.highlights1,
+                highlight2 : req.body.highlights2,
+                highlight3 : req.body.highlights3,
+                highlight4 : req.body.highlights4,
+                highlight5 : req.body.highlights5,
+                highlight6 : req.body.highlights6,
                 image: {
                     data: compressedImageBuffer,
                     contentType: 'image/jpeg || image/png'
@@ -53,13 +62,20 @@ export const postFamily = ((req, res) => {
         } else {
             const image = sharp(req.file.path)
                 .resize(800)
-                .jpeg({ quality: 80 });
+                .jpeg({ quality: 20 });
 
             const compressedImageBuffer = await image.toBuffer();
             const family = new familyModel({
                 place: req.body.place,
                 price: req.body.price,
                 days: req.body.days,
+                description : req.body.description,
+                highlight1 : req.body.highlights1,
+                highlight2 : req.body.highlights2,
+                highlight3 : req.body.highlights3,
+                highlight4 : req.body.highlights4,
+                highlight5 : req.body.highlights5,
+                highlight6 : req.body.highlights6,
                 image: {
                     data: compressedImageBuffer,
                     contentType: 'image/jpeg || image/png'
@@ -83,13 +99,20 @@ export const postHoliday = ((req, res) => {
         } else {
             const image = sharp(req.file.path)
                 .resize(800)
-                .jpeg({ quality: 80 });
+                .jpeg({ quality: 20 });
 
             const compressedImageBuffer = await image.toBuffer();
             const holiday = new holidayModel({
                 place: req.body.place,
                 price: req.body.price,
                 days: req.body.days,
+                description : req.body.description,
+                highlight1 : req.body.highlights1,
+                highlight2 : req.body.highlights2,
+                highlight3 : req.body.highlights3,
+                highlight4 : req.body.highlights4,
+                highlight5 : req.body.highlights5,
+                highlight6 : req.body.highlights6,
                 image: {
                     data: compressedImageBuffer,
                     contentType: 'image/jpeg || image/png'
@@ -105,6 +128,8 @@ export const postHoliday = ((req, res) => {
         }
     })
 })
+
+
 
 export const getHoneymoon = (async (req, res) => {
     try {
@@ -203,3 +228,35 @@ export const deleteAd = (async (req,res) => {
         res.status(500).json(error)
     }
 })
+
+export const getHoneymoonById = (async(req,res)=>{
+    try {
+        const honeypackage = await honeyMoonModel.findById(req.params.id)
+        
+        res.status(200).json(honeypackage)
+    } catch (error) {
+        res.status(500).json(error)        
+    }
+})
+export const getFamilyById = (async(req,res)=>{
+    try {
+        const familypackage = await familyModel.findById(req.params.id)
+        
+        res.status(200).json(familypackage)
+    } catch (error) {
+        res.status(500).json(error)        
+    }
+})
+export const getHolidayById = (async(req,res)=>{
+    try {
+        const holidaypackage = await holidayModel.findById(req.params.id)
+        res.status(200).json(holidaypackage)
+    } catch (error) {
+        res.status(500).json(error)        
+    }
+})
+
+
+
+//posting resorts
+

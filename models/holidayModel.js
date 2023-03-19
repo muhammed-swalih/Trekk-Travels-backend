@@ -14,7 +14,27 @@ const HolidaySchema  = new Schema({
         type : String,
         require : true
     },
-    highlights : {
+    highlight1 : {
+        type : String,
+        require : true
+    },
+    highlight2 : {
+        type : String,
+        require : true
+    },
+    highlight3 : {
+        type : String,
+        require : true
+    },
+    highlight4 : {
+        type : String,
+        require : true
+    },
+    highlight5 : {
+        type : String,
+        require : true
+    },
+    highlight6 : {
         type : String,
         require : true
     },
